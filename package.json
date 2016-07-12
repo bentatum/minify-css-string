@@ -1,0 +1,80 @@
+{
+  "name": "minify-css-string",
+  "description": "Remove new lines and extra space from a string of css.",
+  "version": "1.0.0",
+  "author": "Benjamin Tatum <bentatum@me.com>",
+  "bugs": {
+    "url": "https://github.com/bentatum/minify-css-string/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "commitizen": "^2.8.2",
+    "cz-conventional-changelog": "^1.1.6",
+    "expect": "^1.20.2",
+    "ghooks": "^1.3.2",
+    "mocha": "^2.5.3",
+    "standard": "*",
+    "validate-commit-msg": "^2.6.1"
+  },
+  "homepage": "https://github.com/bentatum/minify-css-string",
+  "keywords": [
+    "css",
+    "inline",
+    "minify",
+    "string"
+  ],
+  "license": "ISC",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bentatum/minify-css-string.git"
+  },
+  "scripts": {
+    "lint": "standard src",
+    "prebuild": "rm -rf dist",
+    "build": "babel -d dist/ src/",
+    "prepublish": "npm test && npm run build",
+    "test": "npm run lint && mocha spec --compilers js:babel-register"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "standard": {
+    "globals": [
+      "$",
+      "beforeEach",
+      "describe",
+      "If",
+      "it",
+      "Else"
+    ],
+    "parser": "babel-eslint"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "issue",
+        "master",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100,
+      "subjectPattern": ".+",
+      "subjectPatternErrorMsg": "subject does not match subject pattern!",
+      "helpMessage": ""
+    }
+  }
+}
